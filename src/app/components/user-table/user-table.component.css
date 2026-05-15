@@ -21,7 +21,7 @@ table {
 }
 
 .header button[mat-raised-button] {
-  background-color: #1565c0 !important; /* Sytě modrá */
+  background-color: #1565c0 !important;
   color: white !important;
 }
 
