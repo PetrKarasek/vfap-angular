@@ -5,7 +5,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort'; // Import MatSort
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -36,7 +36,6 @@ export class UserTableComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<any>([]);
   loading = false;
 
-  // Toto najde matSort ve tvém HTML
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
@@ -49,7 +48,7 @@ export class UserTableComponent implements OnInit, AfterViewInit {
     this.loadUsers();
   }
 
-  // KLÍČOVÁ ČÁST: Propojení seřazení s tabulkou po inicializaci pohledu
+  // Propojení seřazení s tabulkou po inicializaci pohledu
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
@@ -60,7 +59,6 @@ export class UserTableComponent implements OnInit, AfterViewInit {
       next: (response: any) => {
         this.dataSource.data = response || [];
         this.loading = false;
-        // Znovu přiřadíme sort po načtení dat pro jistotu
         this.dataSource.sort = this.sort;
       },
       error: () => {

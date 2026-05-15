@@ -68,7 +68,7 @@ export class LoginComponent {
           this.router.navigate(['/dashboard']);
           
         } else {
-          // Pokud zadá cokoliv jiného, vyhodíme chybu
+          // Pokud zadá cokoliv jiného, vyhodí chybu
           this.loading = false;
           this.error = 'Invalid email or password';
           this.snackBar.open('Invalid email or password', 'Close', { duration: 3000 });
