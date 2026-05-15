@@ -30,7 +30,6 @@ export interface UserDialogData {
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    MatDialogClose
   ],
   // Odkazy na externí soubory
   templateUrl: './user-dialog.component.html',
