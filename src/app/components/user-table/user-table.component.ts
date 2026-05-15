@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import { MatSort, MatSortModule } from '@angular/material/sort'; // Import MatSort
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -30,12 +30,14 @@ import { UserDialogComponent } from '../user-dialog/user-dialog.component';
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.css']
 })
-export class UserTableComponent implements OnInit {
+export class UserTableComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['name', 'email', 'role', 'birthDate', 'actions'];
   
-  // Použití MatTableDataSource pro rychlé lokální filtrování
   dataSource = new MatTableDataSource<any>([]);
   loading = false;
+
+  // Toto najde matSort ve tvém HTML
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private userService: UserService,
@@ -47,13 +49,19 @@ export class UserTableComponent implements OnInit {
     this.loadUsers();
   }
 
+  // KLÍČOVÁ ČÁST: Propojení seřazení s tabulkou po inicializaci pohledu
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
+
   loadUsers(): void {
     this.loading = true;
     this.userService.getUsers().subscribe({
       next: (response: any) => {
-        // Apiary vrací přímo pole, proto "response || []"
         this.dataSource.data = response || [];
         this.loading = false;
+        // Znovu přiřadíme sort po načtení dat pro jistotu
+        this.dataSource.sort = this.sort;
       },
       error: () => {
         this.snackBar.open('Failed to fetch users', 'Close', { duration: 3000 });
@@ -65,7 +73,6 @@ export class UserTableComponent implements OnInit {
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
-    // Lokální filtrování dat v tabulce
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
@@ -80,13 +87,11 @@ export class UserTableComponent implements OnInit {
         this.userService.updateUser(user.id, result).subscribe({
           next: () => {
             this.snackBar.open('User updated successfully', 'Close', { duration: 3000 });
-            
             const currentData = this.dataSource.data;
             const index = currentData.findIndex((u: any) => u.id === user.id);
-            
             if (index !== -1) {
               currentData[index] = { ...currentData[index], ...result };
-              this.dataSource.data = [...currentData]; // Refreshne pohled v HTML
+              this.dataSource.data = [...currentData];
             }
           },
           error: () => {
@@ -102,7 +107,6 @@ export class UserTableComponent implements OnInit {
       this.userService.deleteUser(user.id).subscribe({
         next: () => {
           this.snackBar.open('User deleted successfully', 'Close', { duration: 3000 });
-          // Smazání rovnou z tabulky bez nutnosti volat znova API
           const currentData = this.dataSource.data;
           this.dataSource.data = currentData.filter((u: any) => u.id !== user.id);
         },
@@ -124,7 +128,6 @@ export class UserTableComponent implements OnInit {
         this.userService.createUser(result).subscribe({
           next: (newUser) => {
             this.snackBar.open('User created successfully', 'Close', { duration: 3000 });
-            // Okamžité vložení nového uživatele do tabulky
             const currentData = this.dataSource.data;
             this.dataSource.data = [...currentData, { ...result, id: Date.now() }];
           },

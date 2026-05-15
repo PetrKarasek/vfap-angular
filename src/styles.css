@@ -47,3 +47,33 @@ textarea[matInput],
   background-color: #68a6e4 !important;
   flex: 1;
 }
+
+.mat-mdc-raised-button.mat-primary, 
+.mat-raised-button.mat-primary {
+  background-color: #0044cc !important;
+  color: white !important;
+}
+
+.surface, 
+.mat-mdc-tab-body-content,
+.mat-tab-body-content {
+  background-color: #ffffff !important;
+}
+
+.user-table, 
+.mat-mdc-table, 
+.mat-table {
+  background-color: #e3f2fd !important;
+}
+
+.mat-mdc-header-row, .mat-mdc-row, 
+.mat-mdc-header-cell, .mat-mdc-cell,
+.mat-header-row, .mat-row, 
+.mat-header-cell, .mat-cell {
+  background-color: #e3f2fd !important;
+  border-bottom: 1px solid #bbdefb !important;
+}
+
+.mat-mdc-cell, .mat-mdc-header-cell {
+  color: #333 !important;
+}

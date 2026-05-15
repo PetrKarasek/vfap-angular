@@ -19,3 +19,22 @@ table {
   padding: 20px;
   color: #666;
 }
+
+.header button[mat-raised-button] {
+  background-color: #1565c0 !important; /* Sytě modrá */
+  color: white !important;
+}
+
+.user-table {
+  background-color: #e3f2fd !important;
+  width: 100%;
+  border-radius: 8px;
+}
+
+::ng-deep .user-table .mat-mdc-header-row,
+::ng-deep .user-table .mat-mdc-row,
+::ng-deep .user-table .mat-mdc-cell,
+::ng-deep .user-table .mat-mdc-header-cell {
+  background-color: #e3f2fd !important;
+  border-bottom: 1px solid #bbdefb !important;
+}
