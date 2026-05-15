@@ -1,0 +1,62 @@
+<div class="container">
+  <mat-tab-group animationDuration="0ms" class="surface shadow-sm">
+    
+    <!-- ZÁLOŽKA 1: TABULKA UŽIVATELŮ -->
+    <mat-tab label="Správa uživatelů">
+      <div class="p-32">
+        
+        <!-- Vložení tabulky -->
+        <app-user-table></app-user-table>
+
+      </div>
+    </mat-tab>
+
+    <!-- ZÁLOŽKA 2: INFO A KONTAKT -->
+    <mat-tab label="O aplikaci & Podpora">
+      <div class="p-32">
+        
+        <mat-card class="info-card mb-32">
+          <mat-card-header>
+            <mat-icon color="primary" class="mr-10 mt-2">info</mat-icon>
+            <mat-card-title>K čemu tato administrace slouží?</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="mt-15">
+            <p>Toto je demonstrační Administrační panel</p>
+            <ul>
+              <li><strong>CRUD operace:</strong> Tabulka umí číst, přidávat, upravovat a mazat data.</li>
+              <li><strong>Komponenty:</strong> Využívá Tabs, Material Tabulku, Datepicker, Tlačítka a Snackbar.</li>
+              <li><strong>Routování:</strong> Chráněno přístupem pouze přes Login a Guard.</li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Nahlásit problém nebo sjednat schůzku</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="mt-15">
+            <form (ngSubmit)="sendMessage()" #contactForm="ngForm">
+              <mat-form-field appearance="outline" class="w-full mb-15">
+                <mat-label>Vaše zpráva</mat-label>
+                <textarea matInput rows="4" [(ngModel)]="messageText" name="msg" required></textarea>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-full mb-15">
+                <mat-label>Vyberte datum schůzky</mat-label>
+                <input matInput [matDatepicker]="picker" [min]="today" [(ngModel)]="meetingDate" name="date" required>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.valid">
+                <mat-icon>send</mat-icon> Odeslat požadavek
+              </button>
+            </form>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

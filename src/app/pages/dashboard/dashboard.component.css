@@ -1,0 +1,27 @@
+/* Základní rozvržení */
+.container { 
+  max-width: 1200px; 
+  margin: 40px auto; 
+}
+.surface { 
+  background: white; 
+  border-radius: 8px; 
+  overflow: hidden; 
+}
+.shadow-sm { 
+  box-shadow: 0 3px 6px rgba(0,0,0,0.10); 
+}
+
+/* Odsazení a mezery */
+.p-32 { padding: 32px; }
+.mb-32 { margin-bottom: 32px; }
+.mb-15 { margin-bottom: 15px; }
+.mt-15 { margin-top: 15px; }
+.mr-10 { margin-right: 10px; }
+.w-full { width: 100%; }
+
+/* Specifické karty */
+.info-card { 
+  background-color: #e3f2fd; 
+  border-left: 5px solid #1976d2; 
+}

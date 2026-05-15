@@ -1,0 +1,61 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.navbar { 
+  background-color: var(--header-dark) !important;
+  color: var(--white) !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+  position: relative; 
+  z-index: 100; 
+  padding: 0 40px;
+}
+
+.logo-text {
+  font-weight: bold;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+}
+
+.spacer { flex: 1 1 auto; }
+
+.navbar button.mat-mdc-button {
+  color: var(--white) !important;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  margin-right: 10px;
+}
+
+.login-btn {
+  background-color: var(--primary-blue) !important;
+  color: var(--white) !important;
+  border-radius: 4px;
+  font-size: 13px;
+  padding: 0 20px;
+}
+
+.active-link { background-color: rgba(255, 255, 255, 0.08); }
+
+.content-area { 
+  flex: 1;
+  background-color: #68a6e4; 
+}
+
+.main-footer {
+  background-color: var(--header-dark);
+  color: var(--white);
+  text-align: center;
+  padding: 15px 0;
+  font-size: 12px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0; 
+  background-color: #e3f2fd;
+}

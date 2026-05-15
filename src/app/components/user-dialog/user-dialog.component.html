@@ -1,0 +1,48 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title>{{ data.isEdit ? 'Edit User' : 'Add User' }}</h2>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-dialog-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter name">
+        <mat-error *ngIf="userForm.get('name')?.hasError('required')">Jméno je požadováno</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Enter email">
+        <mat-error *ngIf="userForm.get('email')?.hasError('required')">Email je požadován</mat-error>
+        <mat-error *ngIf="userForm.get('email')?.hasError('email')">Zadejte platný email</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role">
+          <mat-option value="">Výběr role</mat-option>
+          <mat-option value="Admin">Admin</mat-option>
+          <mat-option value="User">Uživatel</mat-option>
+          <mat-option value="Manager">Manažer</mat-option>
+        </mat-select>
+        <mat-error *ngIf="userForm.get('role')?.hasError('required')">Role je požadována</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+  <mat-label>Datum narození</mat-label>
+  <input matInput [matDatepicker]="picker" formControlName="birthDate" [max]="today">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  
+  <mat-error *ngIf="userForm.get('birthDate')?.hasError('required')">
+    Datum narození je požadován
+  </mat-error>
+</mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <button mat-button type="button" (click)="onCancel()">Zrušit</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid">
+        {{ data.isEdit ? 'Update' : 'Create' }}
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>

@@ -1,0 +1,23 @@
+<mat-toolbar color="primary" class="navbar">
+  <a routerLink="/" class="brand-logo">VFAP</a>
+
+  <span class="spacer"></span>
+
+  <div class="nav-links">
+    <button mat-button routerLink="/">Hlavní strana</button>
+    <button mat-button routerLink="/about">O nás</button>
+    <button mat-button routerLink="/references">Reference</button>
+    <button mat-button routerLink="/contact">Kontakt</button>
+  </div>
+
+  <div class="auth-links">
+    <ng-container *ngIf="authService.isAuthenticated(); else loggedOut">
+      <button mat-stroked-button routerLink="/dashboard" class="dashboard-btn">Dashboard</button>
+      <button mat-raised-button color="warn" (click)="onLogout()">Logout</button>
+    </ng-container>
+
+    <ng-template #loggedOut>
+      <button mat-raised-button color="accent" routerLink="/login">Login</button>
+    </ng-template>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,38 @@
+<mat-toolbar class="navbar">
+  <span class="logo-text">VFAP</span> <span class="spacer"></span>
+  
+  <button mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+    HLAVNÍ STRANA
+  </button>
+  <button mat-button routerLink="/about" routerLinkActive="active-link">
+    O NÁS
+  </button>
+  <button mat-button routerLink="/references" routerLinkActive="active-link">
+    REFERENCE
+  </button>
+  <button mat-button routerLink="/contact" routerLinkActive="active-link">
+    KONTAKT
+  </button>
+
+  <ng-container *ngIf="!isLoggedIn()">
+    <button mat-flat-button class="login-btn" routerLink="/login">
+      LOGIN
+    </button>
+  </ng-container>
+
+  <ng-container *ngIf="isLoggedIn()">
+    <button mat-button routerLink="/dashboard" routerLinkActive="active-link">
+      <mat-icon>dashboard</mat-icon> Dashboard
+    </button>
+    <button mat-button color="accent" (click)="logout()">
+      <mat-icon>logout</mat-icon> Odhlásit
+    </button>
+  </ng-container>
+</mat-toolbar>
+
+<main class="content-area">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="main-footer">
+  <span>© React VFAP 2026</span> </footer>

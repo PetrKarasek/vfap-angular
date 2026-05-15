@@ -1,0 +1,39 @@
+<div class="container">
+  <mat-card class="page-card mat-elevation-z3">
+    <mat-card-header>
+      <mat-card-title class="page-title">Reference</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="intro-section">
+        <p>
+          Jsme hrdí na to, že jsme pomohli mnoha společnostem a týmům zefektivnit jejich práci. 
+          Zde jsou některé z našich nejvýznamnějších projektů a spokojených klientů.
+        </p>
+      </div>
+
+      <div class="references-grid">
+        <mat-card class="reference-card mat-elevation-z2" *ngFor="let reference of references">
+          <mat-card-header>
+            <mat-card-title class="reference-title">{{ reference.company }}</mat-card-title>
+            <mat-card-subtitle class="reference-subtitle">{{ reference.industry }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="reference-description">
+              {{ reference.description }}
+            </div>
+            <div class="reference-results">
+              <h4>Výsledky:</h4>
+              <ul>
+                <li *ngFor="let result of reference.results">{{ result }}</li>
+              </ul>
+            </div>
+            <div class="reference-testimonial">
+              <em>"{{ reference.testimonial }}"</em>
+              <p class="testimonial-author">- {{ reference.client }}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,49 @@
+html, body, .mat-typography, app-root {
+  background-color: #68a6e4 !important;
+  margin: 0;
+  height: 100%;
+}
+
+:root {
+  --primary-blue: #68a6e4;
+  --header-dark: #212121;
+  --white: #FFFFFF;
+}
+
+.mat-mdc-card {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+  border-radius: 8px !important;
+}
+
+input[matInput], 
+textarea[matInput],
+.mat-mdc-select-trigger {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+.cdk-overlay-pane {
+  background-color: var(--white) !important;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+  border-radius: 4px;
+}
+
+.mat-mdc-select-panel, 
+.mat-mdc-option {
+  background-color: var(--white) !important;
+}
+
+.mat-mdc-option:hover {
+  background-color: #f0f0f0 !important;
+}
+
+.mat-calendar-body-disabled {
+  opacity: 0.3; 
+  background-color: #eeeeee !important; 
+  cursor: not-allowed; 
+}
+
+.content-area {
+  background-color: #68a6e4 !important;
+  flex: 1;
+}
